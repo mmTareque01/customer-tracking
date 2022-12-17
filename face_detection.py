@@ -16,8 +16,8 @@ def getHaarcascade():
 class DetectFace(VideoTransformerBase):
     process_this_frame = True
     model_obj = ModelController({
-        "images": ['img_training_data/formal.jpg', 'img_training_data/jeny.jpg'],
-        "names": ['Tareque', 'Jeny']
+        "images": ['img_training_data/formal.jpg', 'img_training_data/jeny.jpg', 'img_training_data/marufa.jpeg'],
+        "names": ['Tareque', 'Jeny', 'Marufa']
     })
 
     face_locations, face_names = [], []
