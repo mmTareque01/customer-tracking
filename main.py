@@ -3,30 +3,33 @@
 # from streamlit_webrtc import webrtc_streamer, VideoTransformerBase, RTCConfiguration, VideoProcessorBase, WebRtcMode
 import streamlit as st
 # from face_detection import DetectFace
-from Pages import home_page, about_page
-
+import streamlit_authenticator as stauth
+hashed_passwords = stauth.Hasher(['123', '456']).generate()
 
 
 # RTC_CONFIGURATION = RTCConfiguration({"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]})
 
-st.session_state.isLoggedIn = False
+# st.session_state.isLoggedIn = False
 
-def login_to_system():
-    st.session_state['isLoggedIn'] = True
-    print(st.session_state.isLoggedIn)
+# def login_to_system():
+#     st.session_state['isLoggedIn'] = True
+#     print(st.session_state.isLoggedIn)
 
 def main():
     # st.title("Real Time Face Emotion Detection Application")
 
+    st.session_state.isLoggedIn = False
     if st.session_state.isLoggedIn:
         st.title("Home Page")
 
     else:
-        st.title("Login Page")
+        st.write("""
+        <h1 style='text-align:center'>Login Page</h1>
+        """)
         with st.container():
             email = st.text_input("Email")
             password = st.text_input("Password")
-            st.button("Login", on_click=login_to_system())
+            # st.button("Login", on_click=lambda )
 
 
 
@@ -81,6 +84,16 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    # main()
+    st.write(hashed_passwords)
+    st.session_state.key = True
+    btn = st.button("Login")
+    if btn:
+        st.session_state.key = not st.session_state.key
 
+    # st.write(st.session_state.key)
+    # st.camera_input("Take Poto")
+
+    if st.session_state.key:
+        st.write("this is home page")
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
